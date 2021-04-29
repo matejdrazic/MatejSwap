@@ -1,0 +1,16 @@
+PREOSTALO ZA NAPRAVIT :::
+
+bug: kad ideš kliknit botun na eksploreru sruši se app
+
+ideje za posli: 
+- možda dodat onClick na gornje desne elemente tipa klike ropsten objasni mu da je na toj mreži itd...
+- Request of type 'wallet_requestPermissions' already pending for origin -> kad pokreneš novčanik nakon šta ga 'iksaš'
+- zaminit identicon.js s onin drugin
+- metamask logo na AlertDialogu
+- ona krivulja
+- kad shvatiš na koji ćeš network deploy-at moraš upozoravat da pribace na taj network, isto neki AlertDialog (morat ćeš ga izminit
+    da bude re-usable)
+- rišit da pri učitavanju ne prikaže botun nakon sekunde nego odma čin učita metamask račun
+- dat upozorenje ako želi kupit, provideat ili removeat više nego ima
+- dodat botun koji objašnjava price slippage
+- AlertDialog koji daje transaction hash nakon svake transakcije. Prikazuje Loading dok se tx odvija

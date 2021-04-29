@@ -1,0 +1,47 @@
+.div {
+    width: 500px;
+    height: auto;
+    margin: auto;
+    margin-top: 75px;
+    border: 1px #F8F8F8;
+    border-radius: 15px;
+    background-color: #FFF;
+    padding: 20px;
+  }
+
+  .divPrice {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-top: 75px;
+    margin-left: 45px;
+    border: 1px #F8F8F8;
+    border-radius: 15px;
+    background-color: #FFF;
+    padding: 10px;
+  }
+
+  .font {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .eighty {
+    width: 80%;
+  }
+
+  .fill {
+    width: 40px;
+    height: 40px;
+  }
+
+  .marpad {
+    margin: 0px 10px;
+  }
+
+  .hr {
+    border: none;
+    height: 1px;
+    margin-bottom: 30px;
+    /* Set the hr color */
+    background-color: #333; /* Modern Browsers */
+}
