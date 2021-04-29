@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Web3 from 'web3';
+let web3 = new Web3(Web3.givenProvider);
 
 export default function ButtonTwo(props) {
         return (
             <div onClick={(event) => {
                 event.preventDefault()
+                console.log(props.amountETH)
                 let amountETH = web3.utils.toWei(props.amountETH, 'ether')
                 let amountFESB = web3.utils.toWei(props.amountFESB, 'ether')
                 props.onClick(amountETH, amountFESB) 
