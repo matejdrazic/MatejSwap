@@ -1,8 +1,10 @@
 PREOSTALO ZA NAPRAVIT :::
 
-bug: kad ideš kliknit botun na eksploreru sruši se app
+stavia si navbar u components, valjda sve radi!
+bug: kad ideš kliknit botun na exploreru sruši se app i u braveu
 
 ideje za posli: 
+- računaj cijenu NE množeći trenutnu nego po iston principu ko i pametni ugovor => npr. fesb_received = konstanta / eth_sent + eth_in_pool
 - možda dodat onClick na gornje desne elemente tipa klike ropsten objasni mu da je na toj mreži itd...
 - Request of type 'wallet_requestPermissions' already pending for origin -> kad pokreneš novčanik nakon šta ga 'iksaš'
 - zaminit identicon.js s onin drugin
@@ -11,6 +13,6 @@ ideje za posli:
 - kad shvatiš na koji ćeš network deploy-at moraš upozoravat da pribace na taj network, isto neki AlertDialog (morat ćeš ga izminit
     da bude re-usable)
 - rišit da pri učitavanju ne prikaže botun nakon sekunde nego odma čin učita metamask račun
-- dat upozorenje ako želi kupit, provideat ili removeat više nego ima
+- dat upozorenje ako želi kupit, provideat ili removeat više nego ima na računu
 - dodat botun koji objašnjava price slippage
 - AlertDialog koji daje transaction hash nakon svake transakcije. Prikazuje Loading dok se tx odvija
