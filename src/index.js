@@ -68,9 +68,11 @@ class Tab extends React.Component {
 class Container extends React.Component {
     render() {
         if (this.props.swapping === true)
-            return <SwapContainer price={this.props.price} balances={this.props.balances} buy={this.props.buy} sell={this.props.sell} />
+            return <SwapContainer eth={this.props.eth} fesb={this.props.fesb}
+                constant={this.props.constant} price={this.props.price} balances={this.props.balances} buy={this.props.buy} sell={this.props.sell} />
         else
-            return <PoolContainer price={this.props.price} balances={this.props.balances} provideLiq={this.props.provideLiq} removeLiq={this.props.removeLiq} />
+            return <PoolContainer
+                price={this.props.price} balances={this.props.balances} provideLiq={this.props.provideLiq} removeLiq={this.props.removeLiq} />
     }
 }
 
@@ -208,18 +210,21 @@ class SwapContainer extends React.Component {
         })
     }
 
-    //neće se računat prema fiksnom tečaju nego onom koji dobijamo kao prop iz pagea
     eth_change(e) {
+        let fesb_pool = this.props.constant / (e.target.value + this.props.eth)
+        let fesb_received = this.props.fesb - fesb_pool
         this.setState({
             eth: e.target.value,
-            fesb: e.target.value * this.props.price,
+            fesb: fesb_received
         })
     }
 
     fesb_change(e) {
+        let eth_pool = this.props.constant / (e.target.value + this.props.fesb)
+        let eth_received = this.props.eth - eth_pool
         this.setState({
-            eth: e.target.value / this.props.price,
-            fesb: e.target.value,
+            eth: eth_received,
+            fesb: e.target.value
         })
     }
 
@@ -253,6 +258,8 @@ class Page extends React.Component {
     constructor(props) {
         super(props)
         this.state = ({
+            eth: 0,
+            fesb: 0,
             detectedAccount: null,
             network: null,
             swappingOrPool: true,
@@ -408,12 +415,16 @@ class Page extends React.Component {
         let fesbBalanceInPool = await this.state.fesb_token.methods.balanceOf(this.state.matejswap._address).call()
         let eth = web3.utils.fromWei(ethBalanceInPool, 'ether')
         let fesb = web3.utils.fromWei(fesbBalanceInPool, 'ether')
+        let constant = eth * fesb
         let price = fesb / eth
 
         this.setState({
+            eth,
+            fesb,
             ethBalanceInPool: ethBalanceInPool.toString(),
             fesbBalanceInPool: fesbBalanceInPool.toString(),
-            price
+            price,
+            constant
         })
 
     }
@@ -466,8 +477,10 @@ class Page extends React.Component {
                         <PriceAndInfoSideDiv eth={this.state.ethBalanceInPool} fesb={this.state.fesbBalanceInPool} />
                     </div>
                     <div class="col s6">
-                        <Container price={this.state.price} swapping={this.state.swappingOrPool} balances={this.state.balances} buy={this.buyFesbTokens}
-                            sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity} />
+                        <Container price={this.state.price} swapping={this.state.swappingOrPool} balances={this.state.balances}
+                            buy={this.buyFesbTokens} eth={this.state.eth} fesb={this.state.fesb}
+                            sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
+                            constant={this.state.constant} />
                     </div>
                     <div class="col s3">Ovdi bi tribale bit upute</div>
                 </div>
