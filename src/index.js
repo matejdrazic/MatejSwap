@@ -211,7 +211,7 @@ class SwapContainer extends React.Component {
     }
 
     eth_change(e) {
-        let fesb_pool = this.props.constant / (e.target.value + this.props.eth)
+        let fesb_pool = this.props.constant / (parseFloat(e.target.value) + parseFloat(this.props.eth))
         let fesb_received = this.props.fesb - fesb_pool
         this.setState({
             eth: e.target.value,
@@ -220,7 +220,7 @@ class SwapContainer extends React.Component {
     }
 
     fesb_change(e) {
-        let eth_pool = this.props.constant / (e.target.value + this.props.fesb)
+        let eth_pool = this.props.constant / (parseFloat(e.target.value) + parseFloat(this.props.fesb))
         let eth_received = this.props.eth - eth_pool
         this.setState({
             eth: eth_received,

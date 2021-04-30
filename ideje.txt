@@ -1,4 +1,7 @@
 
+bug: ne prima ti decimale
+A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component.
+
 ideje za posli: 
 - !!! ( RADIŠ TRENUTNO ) -> računaj cijenu NE množeći trenutnu nego po iston principu ko i pametni ugovor => npr. fesb_received = konstanta / eth_sent + eth_in_pool
 - možda dodat onClick na gornje desne elemente tipa klike ropsten objasni mu da je na toj mreži itd...
