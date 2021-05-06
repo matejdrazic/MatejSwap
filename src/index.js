@@ -409,21 +409,51 @@ class Page extends React.Component {
     }
 
     sellFesbTokens = async (fesbAmount) => {
-        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
-        await this.state.matejswap.methods.sellFesbTokens(fesbAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
+        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => {
+            this.setState({
+                alertDialog: false,
+                text: tx,
+                okButton: 'View on EtherScan.com'
+            })
+        })
+        await this.state.matejswap.methods.sellFesbTokens(fesbAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => {
+            this.setState({
+                alertDialog: false,
+                text: tx,
+                okButton: 'View on EtherScan.com'
+            })
+        })
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }
 
     provideLiquidity = async (ethAmount, fesbAmount) => {
-        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
-        await this.state.matejswap.methods.provideLiquidity(fesbAmount).send({ from: this.state.detectedAccount, value: ethAmount }).on('transactionHash', (tx) => console.log(tx))
+        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => {
+            this.setState({
+                alertDialog: false,
+                text: tx,
+                okButton: 'View on EtherScan.com'
+            })
+        })
+        await this.state.matejswap.methods.provideLiquidity(fesbAmount).send({ from: this.state.detectedAccount, value: ethAmount }).on('transactionHash', (tx) => {
+            this.setState({
+                alertDialog: false,
+                text: tx,
+                okButton: 'View on EtherScan.com'
+            })
+        })
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }
 
     removeLiquidity = async (LPAmount) => {
-        await this.state.matejswap.methods.removeLiquidity(LPAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
+        await this.state.matejswap.methods.removeLiquidity(LPAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => {
+            this.setState({
+                alertDialog: false,
+                text: tx,
+                okButton: 'View on EtherScan.com'
+            })
+        })
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }

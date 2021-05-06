@@ -5,7 +5,7 @@ ideje za posli:
 - Request of type 'wallet_requestPermissions' already pending for origin -> kad pokreneš novčanik nakon šta ga 'iksaš' ->
 ka jedino da error pokaže u frontendu
 
-- zaminit identicon.js s onin drugin
+- -> OVO RADIŠ AL -> zaminit identicon.js s onin drugin
 
 - metamask logo na AlertDialogu
 
@@ -13,7 +13,5 @@ ka jedino da error pokaže u frontendu
     da bude re-usable)
 
 - dodat botun koji objašnjava price slippage
-
-- -> NA OVOME RADIŠ: AlertDialog koji daje transaction hash nakon svake transakcije. Prikazuje Loading dok se tx odvija
 
 - dodat oni graf šta pokazuje price slippage

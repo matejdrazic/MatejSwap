@@ -38,7 +38,7 @@ export default function AlertDialog(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"MetaMask is not detected!"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{ (props.okButton==='Install') ? "MetaMask is not detected!":"Transaction hash:"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         {props.text}
