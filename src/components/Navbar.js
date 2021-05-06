@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import M from 'materialize-css';
-import Identicon from 'identicon.js';
+import { Jazzicon } from '@ukstv/jazzicon-react';
+import styled from '@emotion/styled';
 
 class NavBar extends React.Component {
 
@@ -14,7 +15,7 @@ class NavBar extends React.Component {
         this.state = ({
             pool: "",
             swap: "active",
-            detectedAccount: false
+            detectedAccount: false,
         })
 
         const navbar = document.querySelector('.swapnpool');
@@ -42,13 +43,10 @@ class NavBar extends React.Component {
 
     render() {
 
-        let options = {
-            foreground: [0, 0, 0, 255],
-            background: [255, 255, 255, 255],         // rgba white
-            margin: 0.1,                              // 20% margin
-            size: 40,                                // 420px square
-            format: 'svg'                             // use SVG instead of PNG
-        };
+        const ModifiedJazzicon = styled(Jazzicon)({
+            width: 60,
+            height: 60,
+        });
 
         return (
             <div>
@@ -67,7 +65,7 @@ class NavBar extends React.Component {
                                     <a>{ethereum.selectedAddress.substring(0, 6)} ... {ethereum.selectedAddress.substring(ethereum.selectedAddress.length - 4)}</a>
                                 </li>
                                 <li>
-                                    <img width="100%" height="100%" src={`data:image/svg+xml;base64,${new Identicon(ethereum.selectedAddress, options).toString()}`} />
+                                    <ModifiedJazzicon address={this.props.detectedAccount} />
                                 </li>
                             </div>) : <li onClick={this.props.handleConnect}><a class="waves-effect waves-light btn">Connect Wallet <i class="material-icons right">account_balance_wallet</i></a></li>}
                         </ul>

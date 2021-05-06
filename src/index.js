@@ -20,7 +20,7 @@ import InputField from './components/InputField'
 import InputFieldTwo from './components/InputFieldTwo'
 import Tab from './components/Tab'
 
-let web3 = new Web3(Web3.givenProvider);
+let web3 = new Web3(Web3.givenProvider)
 
 class Container extends React.Component {
     render() {

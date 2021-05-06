@@ -5,7 +5,7 @@ ideje za posli:
 - Request of type 'wallet_requestPermissions' already pending for origin -> kad pokreneš novčanik nakon šta ga 'iksaš' ->
 ka jedino da error pokaže u frontendu
 
-- -> OVO RADIŠ AL -> zaminit identicon.js s onin drugin
+- -> OVO RADIŠ -> zaminit identicon.js s onin drugin
 
 - metamask logo na AlertDialogu
 
