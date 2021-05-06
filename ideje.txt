@@ -1,18 +1,19 @@
 
-bug: ne prima ti decimale
-A component is changing an uncontrolled input to be controlled. This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component.
-
 ideje za posli: 
-- !!! ( RADIŠ TRENUTNO ) -> računaj cijenu NE množeći trenutnu nego po iston principu ko i pametni ugovor => npr. fesb_received = konstanta / eth_sent + eth_in_pool
 - možda dodat onClick na gornje desne elemente tipa klike ropsten objasni mu da je na toj mreži itd...
-- Request of type 'wallet_requestPermissions' already pending for origin -> kad pokreneš novčanik nakon šta ga 'iksaš'
+
+- Request of type 'wallet_requestPermissions' already pending for origin -> kad pokreneš novčanik nakon šta ga 'iksaš' ->
+ka jedino da error pokaže u frontendu
+
 - zaminit identicon.js s onin drugin
+
 - metamask logo na AlertDialogu
-- ona krivulja
+
 - kad shvatiš na koji ćeš network deploy-at moraš upozoravat da pribace na taj network, isto neki AlertDialog (morat ćeš ga izminit
     da bude re-usable)
-- rišit da pri učitavanju ne prikaže botun nakon sekunde nego odma čin učita metamask račun
-- dat upozorenje ako želi kupit, provideat ili removeat više nego ima na računu
+
 - dodat botun koji objašnjava price slippage
-- AlertDialog koji daje transaction hash nakon svake transakcije. Prikazuje Loading dok se tx odvija
+
+- -> NA OVOME RADIŠ: AlertDialog koji daje transaction hash nakon svake transakcije. Prikazuje Loading dok se tx odvija
+
 - dodat oni graf šta pokazuje price slippage

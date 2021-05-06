@@ -16,54 +16,11 @@ import ButtonTwo from './components/ButtonTwo';
 import ButtonThree from './components/ButtonThree';
 import InputFieldLP from './components/InputFieldLP';
 import NavBar from './components/Navbar';
+import InputField from './components/InputField'
+import InputFieldTwo from './components/InputFieldTwo'
+import Tab from './components/Tab'
 
 let web3 = new Web3(Web3.givenProvider);
-
-class InputField extends React.Component {
-    render() {
-        return (
-            <div class="row">
-                <div class="col s12 font">{this.props.text}</div>
-                <div class="col s10">
-                    <form>
-                        <div class="input-field">
-                            <input value={this.props.value} onChange={this.props.input} placeholder="0.0" disabled={this.props.disabled} type="number" min="0" step=".01" class="validate" />
-                            <span class="helper-text" data-error="wrong">Balance ETH: {web3.utils.fromWei(this.props.balances.eth_balance, 'ether')} </span>                        </div>
-                    </form>
-                </div>
-
-                <div class="col s2"><img src="eth.png" class="fill" alt="Italian Trulli" /> </div>
-            </div>
-        );
-    }
-}
-
-class InputFieldTwo extends React.Component {
-    render() {
-        return (
-            <div class="row">
-                <div class="col s12 font">{this.props.text}</div>
-                <div class="col s10">
-                    <form>
-                        <div class="input-field">
-                            <input value={this.props.value} onChange={this.props.input} disabled={this.props.disabled} placeholder="0.0" type="number" min="0" step=".01" class="validate" />
-                            <span class="helper-text" data-error="wrong">Balance Fesb: {web3.utils.fromWei(this.props.balances.fesb_balance, 'ether')}</span>                        </div>
-                    </form>
-                </div>
-
-                <div class="col s2"><img src="fesb.jpg" class="fill" alt="Italian Trulli" /> </div>
-            </div>
-        );
-    }
-}
-
-class Tab extends React.Component {
-    render() {
-        return (
-            <li onClick={this.props.onClick} class="tab col s6"><a href={this.props.hrefni} >{this.props.name}</a></li>
-        );
-    }
-}
 
 class Container extends React.Component {
     render() {
@@ -172,6 +129,10 @@ class SwapContainer extends React.Component {
         this.state = ({
             buyOrSell: true,
 
+            //ovo si doda radi onog errora al nisi testira "A component is changing ..."
+            eth: '',
+            fesb: '',
+
             arrow: 'arrow_downward',
             disabledETH: '',
             disabledFESB: 'disabled',
@@ -271,7 +232,9 @@ class Page extends React.Component {
                 lp_balance: ''
             },
             ethBalanceInPool: '0',
-            fesbBalanceInPool: '0'
+            fesbBalanceInPool: '0',
+            text: "Please consider installing MetaMask to fully experience MatejSwap!",
+            okButton: 'Install'
         })
 
         this.handleClick = this.handleClick.bind(this)
@@ -365,7 +328,6 @@ class Page extends React.Component {
     async componentDidMount() {
 
         if (this.state.alertDialog) {
-
             await this.getContracts()
 
             ethereum.on('accountsChanged', this.handleChange);
@@ -382,11 +344,16 @@ class Page extends React.Component {
         }
     }
 
+    //ODI OBRATI POZORNOST
+
+
     setAlertDialog() {
         this.setState({
             alertDialog: true
         })
     }
+
+
 
     async loadWalletInfo() {
 
@@ -430,27 +397,33 @@ class Page extends React.Component {
     }
 
     buyFesbTokens = async (ethAmount) => {
-        await this.state.matejswap.methods.buyFesbTokens().send({ from: this.state.detectedAccount, value: ethAmount })
+        await this.state.matejswap.methods.buyFesbTokens().send({ from: this.state.detectedAccount, value: ethAmount }).on('transactionHash', (tx) => {
+            this.setState({
+                alertDialog: false,
+                text: tx,
+                okButton: 'View on EtherScan.com'
+            })
+        })
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }
 
     sellFesbTokens = async (fesbAmount) => {
-        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount })
-        await this.state.matejswap.methods.sellFesbTokens(fesbAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount })
+        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
+        await this.state.matejswap.methods.sellFesbTokens(fesbAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }
 
     provideLiquidity = async (ethAmount, fesbAmount) => {
-        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount })
-        await this.state.matejswap.methods.provideLiquidity(fesbAmount).send({ from: this.state.detectedAccount, value: ethAmount })
+        await this.state.fesb_token.methods.approve(this.state.matejswap._address, fesbAmount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
+        await this.state.matejswap.methods.provideLiquidity(fesbAmount).send({ from: this.state.detectedAccount, value: ethAmount }).on('transactionHash', (tx) => console.log(tx))
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }
 
     removeLiquidity = async (LPAmount) => {
-        await this.state.matejswap.methods.removeLiquidity(LPAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount })
+        await this.state.matejswap.methods.removeLiquidity(LPAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => console.log(tx))
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }
@@ -464,7 +437,7 @@ class Page extends React.Component {
     render() {
 
         if (!this.state.alertDialog) {
-            return (<AlertDialog setAlertDialog={this.setAlertDialog} text="Please consider installing MetaMask to fully experience MatejSwap!"
+            return (<AlertDialog setAlertDialog={this.setAlertDialog} text={this.state.text} okButton={this.state.okButton}
             />)
         } else {
             return (

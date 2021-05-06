@@ -24,6 +24,12 @@ export default function AlertDialog(props) {
         setOpen(false);
     };
 
+    const handleTx = () => {
+        window.open('https://ropsten.etherscan.io/tx/' + '0x8360d4b31c2a924799a121ec304c48ab5aa620db7b9905c53d899da9a7ccc91b', '_blank');
+        props.setAlertDialog();
+        setOpen(false);
+    };
+
     return (
         <div>
             <Dialog
@@ -42,8 +48,8 @@ export default function AlertDialog(props) {
                     <Button onClick={handleClose} color="primary">
                         Maybe later
           </Button>
-                    <Button onClick={handleInstall} color="primary">
-                        Install
+                    <Button onClick={(props.okButton==='Install') ? handleInstall:handleTx} color="primary">
+                        {props.okButton}
           </Button>
                 </DialogActions>
             </Dialog>
