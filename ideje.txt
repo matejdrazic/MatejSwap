@@ -2,13 +2,6 @@
 ideje za posli: 
 - možda dodat onClick na gornje desne elemente tipa klike ropsten objasni mu da je na toj mreži itd...
 
-- Request of type 'wallet_requestPermissions' already pending for origin -> kad pokreneš novčanik nakon šta ga 'iksaš' ->
-ka jedino da error pokaže u frontendu
-
-- -> OVO RADIŠ -> zaminit identicon.js s onin drugin
-
-- metamask logo na AlertDialogu
-
 - kad shvatiš na koji ćeš network deploy-at moraš upozoravat da pribace na taj network, isto neki AlertDialog (morat ćeš ga izminit
     da bude re-usable)
 

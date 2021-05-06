@@ -38,19 +38,23 @@ export default function AlertDialog(props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{ (props.okButton==='Install') ? "MetaMask is not detected!":"Transaction hash:"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">{props.dialogTitle}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        {props.text}
-          </DialogContentText>
+                        <ul>
+                        <li>{props.text}</li>
+                        <br />
+                        <li align="center"> <img height="70px" width="70px" src="metamask.svg" /></li>
+                        </ul>
+                    </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Maybe later
           </Button>
-                    <Button onClick={(props.okButton==='Install') ? handleInstall:handleTx} color="primary">
+                    <Button onClick={(props.okButton === 'Install') ? handleInstall : handleTx} color="primary">
                         {props.okButton}
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

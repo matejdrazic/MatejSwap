@@ -234,7 +234,8 @@ class Page extends React.Component {
             ethBalanceInPool: '0',
             fesbBalanceInPool: '0',
             text: "Please consider installing MetaMask to fully experience MatejSwap!",
-            okButton: 'Install'
+            okButton: 'Install',
+            dialogTitle: "MetaMask is not detected!"
         })
 
         this.handleClick = this.handleClick.bind(this)
@@ -291,27 +292,35 @@ class Page extends React.Component {
 
     async handleConnect() {
 
-        if (window.ethereum) {
-            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-            const chainId = await ethereum.request({ method: 'eth_chainId' });
+        try {
+            if (window.ethereum) {
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                const chainId = await ethereum.request({ method: 'eth_chainId' });
 
-            let chainName = null;
-            if (chainId === '0x1')
-                chainName = 'Mainnet'
-            else if (chainId === '0x3')
-                chainName = 'Ropsten'
-            else if (chainId === '0x4')
-                chainName = 'Rinkeby'
-            else if (chainId === '0x2a')
-                chainName = 'Kovan'
-            else console.log('None detected')
+                let chainName = null;
+                if (chainId === '0x1')
+                    chainName = 'Mainnet'
+                else if (chainId === '0x3')
+                    chainName = 'Ropsten'
+                else if (chainId === '0x4')
+                    chainName = 'Rinkeby'
+                else if (chainId === '0x2a')
+                    chainName = 'Kovan'
+                else console.log('None detected')
+                this.setState({
+                    network: chainName,
+                    detectedAccount: accounts ? accounts[0] : false
+                })
+                this.loadWalletInfo()
+            } else {
+                window.open('https://metamask.io', '_blank');
+            }
+        } catch(e){
             this.setState({
-                network: chainName,
-                detectedAccount: accounts ? accounts[0] : false
+                alertDialog: false,
+                text: e.message,
+                dialogTitle: "Your MetaMask is probably already open!"
             })
-            this.loadWalletInfo()
-        } else {
-            window.open('https://metamask.io', '_blank');
         }
 
     }
@@ -343,9 +352,6 @@ class Page extends React.Component {
 
         }
     }
-
-    //ODI OBRATI POZORNOST
-
 
     setAlertDialog() {
         this.setState({
@@ -401,7 +407,8 @@ class Page extends React.Component {
             this.setState({
                 alertDialog: false,
                 text: tx,
-                okButton: 'View on EtherScan.com'
+                okButton: 'View on EtherScan.com',
+                dialogTitle: "Transaction hash:"
             })
         })
         this.loadWalletInfo()
@@ -413,14 +420,16 @@ class Page extends React.Component {
             this.setState({
                 alertDialog: false,
                 text: tx,
-                okButton: 'View on EtherScan.com'
+                okButton: 'View on EtherScan.com',
+                dialogTitle: "Transaction hash:"
             })
         })
         await this.state.matejswap.methods.sellFesbTokens(fesbAmount, this.state.detectedAccount).send({ from: this.state.detectedAccount }).on('transactionHash', (tx) => {
             this.setState({
                 alertDialog: false,
                 text: tx,
-                okButton: 'View on EtherScan.com'
+                okButton: 'View on EtherScan.com',
+                dialogTitle: "Transaction hash:"
             })
         })
         this.loadWalletInfo()
@@ -432,14 +441,16 @@ class Page extends React.Component {
             this.setState({
                 alertDialog: false,
                 text: tx,
-                okButton: 'View on EtherScan.com'
+                okButton: 'View on EtherScan.com',
+                dialogTitle: "Transaction hash:"
             })
         })
         await this.state.matejswap.methods.provideLiquidity(fesbAmount).send({ from: this.state.detectedAccount, value: ethAmount }).on('transactionHash', (tx) => {
             this.setState({
                 alertDialog: false,
                 text: tx,
-                okButton: 'View on EtherScan.com'
+                okButton: 'View on EtherScan.com',
+                dialogTitle: "Transaction hash:"
             })
         })
         this.loadWalletInfo()
@@ -451,7 +462,8 @@ class Page extends React.Component {
             this.setState({
                 alertDialog: false,
                 text: tx,
-                okButton: 'View on EtherScan.com'
+                okButton: 'View on EtherScan.com',
+                dialogTitle: "Transaction hash:"
             })
         })
         this.loadWalletInfo()
@@ -468,7 +480,7 @@ class Page extends React.Component {
 
         if (!this.state.alertDialog) {
             return (<AlertDialog setAlertDialog={this.setAlertDialog} text={this.state.text} okButton={this.state.okButton}
-            />)
+                    dialogTitle={this.state.dialogTitle} />)
         } else {
             return (
                 <div class="row">
