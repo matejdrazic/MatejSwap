@@ -27,7 +27,7 @@ class Container extends React.Component {
     render() {
         if (this.props.swapping === true)
             return <SwapContainer eth={this.props.eth} fesb={this.props.fesb} eth_change={this.props.eth_change} fesb_change={this.props.fesb_change}
-                constant={this.props.constant} price={this.props.price} balances={this.props.balances} 
+                constant={this.props.constant} price={this.props.price} balances={this.props.balances}
                 ethChange={this.props.ethChange} fesbChange={this.props.fesbChange}
                 buy={this.props.buy} sell={this.props.sell} />
         else
@@ -239,22 +239,20 @@ class Page extends React.Component {
     }
 
     async getContracts() {
-        let networkID = await web3.eth.net.getId()
+        /* let networkID = await web3.eth.net.getId()
         let FesbNetwork = FesbToken.networks[networkID]
         let MatejSwapNetwork = MatejSwap.networks[networkID]
-        let MatejLPNetwork = MatejSwapLP.networks[networkID]
-        if (FesbNetwork) {
-            let fesb_token = new web3.eth.Contract(FesbToken.abi, FesbNetwork.address)
-            let matejswap = new web3.eth.Contract(MatejSwap.abi, MatejSwapNetwork.address)
-            let matejswapLP = new web3.eth.Contract(MatejSwapLP.abi, MatejLPNetwork.address)
+        let MatejLPNetwork = MatejSwapLP.networks[networkID] */
 
-            this.setState({
-                fesb_token,
-                matejswap,
-                matejswapLP
-            })
-            this.gettingSwapInfo()
-        }
+        let fesb_token = new web3.eth.Contract(FesbToken.abi, '0x5D7b1fD58633cB6FaEF2250838076A5E3634087d')
+        let matejswap = new web3.eth.Contract(MatejSwap.abi, '0x421FCB7d64b4DEEc47D3025a7C9362965aefd383')
+        let matejswapLP = new web3.eth.Contract(MatejSwapLP.abi, '0xdDcbb84192B858940CD01f08200Cd24E7Aee336F')
+
+        this.setState({
+            fesb_token,
+            matejswap,
+            matejswapLP
+        })
     }
 
     async getBlockchain() {
@@ -333,6 +331,7 @@ class Page extends React.Component {
 
                 await this.getBlockchain();
                 await this.loadWalletInfo();
+                await this.gettingSwapInfo()
 
             }, 1000);
         } else {
@@ -386,8 +385,8 @@ class Page extends React.Component {
             price,
             constant
         })
-
     }
+
 
     buyFesbTokens = async (ethAmount) => {
         await this.state.matejswap.methods.buyFesbTokens().send({ from: this.state.detectedAccount, value: ethAmount }).on('transactionHash', (tx) => {
