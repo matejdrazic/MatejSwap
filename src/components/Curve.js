@@ -24,7 +24,7 @@ const Curve = (props) => {
       if(props.addingEth||props.addingToken){
         maxX = k/(props.ethReserve*0.4)
         //maxX = k/(props.ethReserve*0.8)
-        minX = k/Math.max(0,(500-props.ethReserve))
+        minX = k/Math.max(0,(5000000000-props.ethReserve/100))
       }
 
       const maxY = maxX * height / width;
@@ -67,7 +67,7 @@ const Curve = (props) => {
       }
       ctx.stroke() ;
 
-      ctx.lineWidth = 1 ;
+      ctx.lineWidth = 2 ;
 
       if(props.addingEth){
 
@@ -125,19 +125,20 @@ const Curve = (props) => {
     }
   },[props]);
 
+const { addingEth, addingToken, ethReserve, tokenReserve, ...rest } = props
 
   return (
-    <div style={{margin:32,position:'relative',width:props.width,height:props.height}}>
+    <div style={{margin:45,position:'relative',width:props.width,height:props.height}}>
       <canvas
         style={{position:'absolute',left:0,top:0}}
         ref={ref}
-        {...props}
+        {...rest}
       />
-      <div style={{position:'absolute',left:"20%",bottom:-20}}>
+      <div style={{position:'absolute',left:"20%",bottom:-30}}>
         -- ETH Reserve --
       </div>
-      <div style={{position:'absolute',left:-20,bottom:"20%",transform:"rotate(-90deg)",transformOrigin:"0 0"}}>
-        -- Token Reserve --
+      <div style={{position:'absolute',left:-30,bottom:"20%",transform:"rotate(-90deg)",transformOrigin:"0 0"}}>
+        -- FESB Reserve --
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export default function ButtonOne(props) {
         <div onClick={(event) => {
             event.preventDefault()
             let amount = web3.utils.toWei(props.amount, 'ether')
-            window.ethereum ? props.onClick(props.amount) : null
+            window.ethereum ? props.onClick(amount) : null
         }} class="row center-align marpad">
             <a class="waves-effect waves-light btn-large col s12">{props.text}</a>
         </div>

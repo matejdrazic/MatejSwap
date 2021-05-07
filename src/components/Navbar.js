@@ -61,7 +61,7 @@ class NavBar extends React.Component {
                             {this.props.detectedAccount ? (<div>
                                 <li>
                                     <a>{this.props.network}</a></li>
-                                <li margin="10px">
+                                <li margin="5px">
                                     <a>{ethereum.selectedAddress.substring(0, 6)} ... {ethereum.selectedAddress.substring(ethereum.selectedAddress.length - 4)}</a>
                                 </li>
                                 <li>

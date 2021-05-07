@@ -5,8 +5,7 @@ ideje za posli:
 - kad shvatiš na koji ćeš network deploy-at moraš upozoravat da pribace na taj network, isto neki AlertDialog (morat ćeš ga izminit
     da bude re-usable)
 
-- dodat botun koji objašnjava price slippage
-
-- -> NA OVOME RADIŠ -> dodat oni graf šta pokazuje price slippage
-
 - dodat upute
+
+ADRESE:
+

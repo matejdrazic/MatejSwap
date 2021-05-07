@@ -26,8 +26,10 @@ let web3 = new Web3(Web3.givenProvider)
 class Container extends React.Component {
     render() {
         if (this.props.swapping === true)
-            return <SwapContainer eth={this.props.eth} fesb={this.props.fesb}
-                constant={this.props.constant} price={this.props.price} balances={this.props.balances} buy={this.props.buy} sell={this.props.sell} />
+            return <SwapContainer eth={this.props.eth} fesb={this.props.fesb} eth_change={this.props.eth_change} fesb_change={this.props.fesb_change}
+                constant={this.props.constant} price={this.props.price} balances={this.props.balances} 
+                ethChange={this.props.ethChange} fesbChange={this.props.fesbChange}
+                buy={this.props.buy} sell={this.props.sell} />
         else
             return <PoolContainer
                 price={this.props.price} balances={this.props.balances} provideLiq={this.props.provideLiq} removeLiq={this.props.removeLiq} />
@@ -143,8 +145,6 @@ class SwapContainer extends React.Component {
 
         this.handleBuyClick = this.handleBuyClick.bind(this);
         this.handleSellClick = this.handleSellClick.bind(this);
-        this.eth_change = this.eth_change.bind(this);
-        this.fesb_change = this.fesb_change.bind(this)
 
         const tabs = document.querySelector('.tabs');
         var instance = M.Tabs.init(tabs, {});
@@ -172,24 +172,6 @@ class SwapContainer extends React.Component {
         })
     }
 
-    eth_change(e) {
-        let fesb_pool = this.props.constant / (parseFloat(e.target.value) + parseFloat(this.props.eth))
-        let fesb_received = this.props.fesb - fesb_pool
-        this.setState({
-            eth: e.target.value,
-            fesb: fesb_received
-        })
-    }
-
-    fesb_change(e) {
-        let eth_pool = this.props.constant / (parseFloat(e.target.value) + parseFloat(this.props.fesb))
-        let eth_received = this.props.eth - eth_pool
-        this.setState({
-            eth: eth_received,
-            fesb: e.target.value
-        })
-    }
-
     render() {
 
         return (
@@ -203,12 +185,12 @@ class SwapContainer extends React.Component {
                 </div>
                 <div class="marpad">
                     <InputField disabled={this.state.disabledETH} text={this.state.textDisplayETH} balances={this.props.balances}
-                        input={this.eth_change} value={this.state.eth} buyOrSell={this.state.buyOrSell} />
+                        input={this.props.eth_change} value={this.props.ethChange} buyOrSell={this.state.buyOrSell} />
                     <Icon arrow={this.state.arrow} />
                     <InputFieldTwo disabled={this.state.disabledFESB} text={this.state.textDisplayFESB} balances={this.props.balances}
-                        input={this.fesb_change} value={this.state.fesb} buyOrSell={this.state.buyOrSell} />
+                        input={this.props.fesb_change} value={this.props.fesbChange} buyOrSell={this.state.buyOrSell} />
                     <ButtonOne text={this.state.buyOrSell ? 'Buy' : 'Sell'}
-                        onClick={this.state.buyOrSell ? this.props.buy : this.props.sell} amount={this.state.buyOrSell ? (this.state.eth ? this.state.eth.toString() : '0') : (this.state.fesb ? this.state.fesb.toString() : '0')} />
+                        onClick={this.state.buyOrSell ? this.props.buy : this.props.sell} amount={this.state.buyOrSell ? (this.props.ethChange ? this.props.ethChange.toString() : '0') : (this.props.fesbChange ? this.props.fesbChange.toString() : '0')} />
                 </div>
             </div>
         );
@@ -236,7 +218,8 @@ class Page extends React.Component {
             fesbBalanceInPool: '0',
             text: "Please consider installing MetaMask to fully experience MatejSwap!",
             okButton: 'Install',
-            dialogTitle: "MetaMask is not detected!"
+            dialogTitle: "MetaMask is not detected!",
+            writing: true
         })
 
         this.handleClick = this.handleClick.bind(this)
@@ -249,6 +232,9 @@ class Page extends React.Component {
         this.gettingSwapInfo = this.gettingSwapInfo.bind(this);
         this.getBlockchain = this.getBlockchain.bind(this);
         this.getContracts = this.getContracts.bind(this);
+
+        this.eth_change = this.eth_change.bind(this);
+        this.fesb_change = this.fesb_change.bind(this)
 
     }
 
@@ -284,7 +270,7 @@ class Page extends React.Component {
             chainName = 'Rinkeby'
         else if (chainId === '0x2a')
             chainName = 'Kovan'
-        else console.log('None detected')
+        else chainName = 'Local env'
         this.setState({
             network: chainName,
             detectedAccount: accounts ? accounts[0] : false
@@ -307,7 +293,7 @@ class Page extends React.Component {
                     chainName = 'Rinkeby'
                 else if (chainId === '0x2a')
                     chainName = 'Kovan'
-                else console.log('None detected')
+                else console.log('Local env')
                 this.setState({
                     network: chainName,
                     detectedAccount: accounts ? accounts[0] : false
@@ -477,6 +463,26 @@ class Page extends React.Component {
         })
     }
 
+    eth_change(e) {
+        let fesb_pool = this.state.constant / (parseFloat(e.target.value) + parseFloat(this.state.eth))
+        let fesb_received = this.state.fesb - fesb_pool
+        this.setState({
+            ethChange: e.target.value,
+            fesbChange: fesb_received,
+            writing: true
+        })
+    }
+
+    fesb_change(e) {
+        let eth_pool = this.state.constant / (parseFloat(e.target.value) + parseFloat(this.state.fesb))
+        let eth_received = this.state.eth - eth_pool
+        this.setState({
+            ethChange: eth_received,
+            fesbChange: e.target.value,
+            writing: false
+        })
+    }
+
     render() {
 
         if (!this.state.alertDialog) {
@@ -492,8 +498,8 @@ class Page extends React.Component {
                     <div class="col s3">
                         <PriceAndInfoSideDiv eth={this.state.ethBalanceInPool} fesb={this.state.fesbBalanceInPool} />
                         <Curve
-                            addingEth={10}
-                            addingToken={0}
+                            addingEth={(this.state.writing) ? this.state.ethChange : 0}
+                            addingToken={(this.state.writing) ? 0 : this.state.fesbChange}
                             ethReserve={parseFloat(this.state.eth)}
                             tokenReserve={parseFloat(this.state.fesb)}
                             width={350} height={350} />
@@ -501,8 +507,9 @@ class Page extends React.Component {
                     <div class="col s6">
                         <Container price={this.state.price} swapping={this.state.swappingOrPool} balances={this.state.balances}
                             buy={this.buyFesbTokens} eth={this.state.eth} fesb={this.state.fesb}
+                            ethChange={this.state.ethChange} fesbChange={this.state.fesbChange}
                             sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
-                            constant={this.state.constant} />
+                            eth_change={this.eth_change} fesb_change={this.fesb_change} />
                     </div>
                     <div class="col s3">Ovdi bi tribale bit upute</div>
                 </div>

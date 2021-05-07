@@ -11,8 +11,8 @@ contract FesbToken is IFesbToken {
 
   mapping (address => mapping (address => uint256)) private _allowed;
 
-  //5 Milijuna FESB tokena
-  uint256 private _totalSupply = 5000000000000000000000000;
+  //Sto tisuća (100 000) FESB tokena
+  uint256 private _totalSupply = 100000000000000000000000;
   string public _name = "FESB tokens";
   string public _symbol = "FESB";
   uint8 private _decimals = 18;
