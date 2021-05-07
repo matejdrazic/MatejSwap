@@ -1,2 +1,5 @@
 .secret
-ideje.txt
+ideje
+
+# dependencies
+/node_modules
