@@ -7,4 +7,6 @@ ideje za posli:
 
 - dodat botun koji objašnjava price slippage
 
-- dodat oni graf šta pokazuje price slippage
+- -> NA OVOME RADIŠ -> dodat oni graf šta pokazuje price slippage
+
+- dodat upute

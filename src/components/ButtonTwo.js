@@ -7,7 +7,6 @@ export default function ButtonTwo(props) {
         return (
             <div onClick={(event) => {
                 event.preventDefault()
-                console.log(props.amountETH)
                 let amountETH = web3.utils.toWei(props.amountETH, 'ether')
                 let amountFESB = web3.utils.toWei(props.amountFESB, 'ether')
                 window.ethereum ? props.onClick(amountETH, amountFESB) : null

@@ -19,6 +19,7 @@ import NavBar from './components/Navbar';
 import InputField from './components/InputField'
 import InputFieldTwo from './components/InputFieldTwo'
 import Tab from './components/Tab'
+import Curve from './components/Curve.js'
 
 let web3 = new Web3(Web3.givenProvider)
 
@@ -207,7 +208,7 @@ class SwapContainer extends React.Component {
                     <InputFieldTwo disabled={this.state.disabledFESB} text={this.state.textDisplayFESB} balances={this.props.balances}
                         input={this.fesb_change} value={this.state.fesb} buyOrSell={this.state.buyOrSell} />
                     <ButtonOne text={this.state.buyOrSell ? 'Buy' : 'Sell'}
-                        onClick={this.state.buyOrSell ? this.props.buy : this.props.sell} amount={this.state.buyOrSell ? web3.utils.toWei(this.state.eth ? this.state.eth.toString() : '0', 'ether') : web3.utils.toWei(this.state.fesb ? this.state.fesb.toString() : '0', 'ether')} />
+                        onClick={this.state.buyOrSell ? this.props.buy : this.props.sell} amount={this.state.buyOrSell ? (this.state.eth ? this.state.eth.toString() : '0') : (this.state.fesb ? this.state.fesb.toString() : '0')} />
                 </div>
             </div>
         );
@@ -315,7 +316,7 @@ class Page extends React.Component {
             } else {
                 window.open('https://metamask.io', '_blank');
             }
-        } catch(e){
+        } catch (e) {
             this.setState({
                 alertDialog: false,
                 text: e.message,
@@ -480,7 +481,7 @@ class Page extends React.Component {
 
         if (!this.state.alertDialog) {
             return (<AlertDialog setAlertDialog={this.setAlertDialog} text={this.state.text} okButton={this.state.okButton}
-                    dialogTitle={this.state.dialogTitle} />)
+                dialogTitle={this.state.dialogTitle} />)
         } else {
             return (
                 <div class="row">
@@ -496,6 +497,13 @@ class Page extends React.Component {
                             buy={this.buyFesbTokens} eth={this.state.eth} fesb={this.state.fesb}
                             sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
                             constant={this.state.constant} />
+
+                        <Curve
+                            addingEth={1}
+                            addingToken={0}
+                            ethReserve={parseFloat(this.state.eth)}
+                            tokenReserve={parseFloat(this.state.fesb)}
+                            width={500} height={500} />
                     </div>
                     <div class="col s3">Ovdi bi tribale bit upute</div>
                 </div>
