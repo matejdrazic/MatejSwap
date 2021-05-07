@@ -25,6 +25,7 @@ export default function AlertDialog(props) {
     };
 
     const handleTx = () => {
+        //this.props.text
         window.open('https://ropsten.etherscan.io/tx/' + '0x8360d4b31c2a924799a121ec304c48ab5aa620db7b9905c53d899da9a7ccc91b', '_blank');
         props.setAlertDialog();
         setOpen(false);

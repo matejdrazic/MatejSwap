@@ -491,19 +491,18 @@ class Page extends React.Component {
                     </div>
                     <div class="col s3">
                         <PriceAndInfoSideDiv eth={this.state.ethBalanceInPool} fesb={this.state.fesbBalanceInPool} />
+                        <Curve
+                            addingEth={10}
+                            addingToken={0}
+                            ethReserve={parseFloat(this.state.eth)}
+                            tokenReserve={parseFloat(this.state.fesb)}
+                            width={350} height={350} />
                     </div>
                     <div class="col s6">
                         <Container price={this.state.price} swapping={this.state.swappingOrPool} balances={this.state.balances}
                             buy={this.buyFesbTokens} eth={this.state.eth} fesb={this.state.fesb}
                             sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
                             constant={this.state.constant} />
-
-                        <Curve
-                            addingEth={1}
-                            addingToken={0}
-                            ethReserve={parseFloat(this.state.eth)}
-                            tokenReserve={parseFloat(this.state.fesb)}
-                            width={500} height={500} />
                     </div>
                     <div class="col s3">Ovdi bi tribale bit upute</div>
                 </div>

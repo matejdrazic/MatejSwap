@@ -105,7 +105,7 @@ const Curve = (props) => {
         drawArrow(ctx,plotX(props.ethReserve),plotY(props.tokenReserve),plotX(props.ethReserve),plotY(newTokenReserve))
 
         ctx.fillStyle = "#000000";
-        ctx.fillText(""+(props.addingToken)+" 🎈 input", plotX(props.ethReserve)+textSize,plotY(props.tokenReserve));
+        ctx.fillText(""+(props.addingToken)+" FESB input", plotX(props.ethReserve)+textSize,plotY(props.tokenReserve));
 
         ctx.strokeStyle = "#009900";
         drawArrow(ctx,plotX(props.ethReserve),plotY(newTokenReserve),plotX(k/(newTokenReserve)),plotY(newTokenReserve))
