@@ -1,5 +1,4 @@
 {
-  "homepage": "http://matejdrazic.github.io/MatejSwap",
   "name": "dex-eth",
   "version": "1.0.0",
   "description": "eth-token-swap",
@@ -7,8 +6,6 @@
     "test": "test"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "mocha",
@@ -28,7 +25,6 @@
     "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
     "create-react-app": "^4.0.3",
-    "identicon.js": "^2.3.3",
     "jazzicon": "^1.5.0",
     "materialize-css": "^1.0.0-rc.2",
     "mocha": "*",
@@ -52,9 +48,7 @@
     "@material-ui/core": "^4.11.3",
     "@truffle/hdwallet-provider": "^1.2.2",
     "fs": "0.0.1-security",
-    "gh-pages": "^3.1.0",
     "mocha": "^8.3.2",
-    "truffle-hdwallet-provider": "^1.0.17",
     "web3": "^1.3.5"
   }
 }

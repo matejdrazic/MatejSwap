@@ -6,7 +6,6 @@ import './index.css';
 import FesbToken from './build/FesbToken.json';
 import MatejSwap from './build/MatejSwap.json';
 import MatejSwapLP from './build/MatejSwapLP.json'
-import Identicon from 'identicon.js';
 import DialogBox from './components/AlertDialog'
 import AlertDialog from './components/AlertDialog';
 import PriceAndInfoSideDiv from './components/PriceAndInfoSideDiv';
