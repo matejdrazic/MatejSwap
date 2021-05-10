@@ -9,8 +9,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "mocha",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d"
   },
+  "homepage": "https://matejdrazic.github.io/MatejSwap",
   "keywords": [
     "node",
     "npm"
