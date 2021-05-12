@@ -45,7 +45,7 @@ export default function AlertDialog(props) {
                         <ul>
                         <li>{props.text}</li>
                         <br />
-                        <li align="center"> <img height="70px" width="70px" src="metamask.svg" /></li>
+                        <li align="center"> <img height="70px" width="70px" src="././assets/metamask.svg" /></li>
                         </ul>
                     </DialogContentText>
                 </DialogContent>

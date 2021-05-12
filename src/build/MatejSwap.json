@@ -17571,10 +17571,186 @@
       "links": {},
       "address": "0x017ff9f329a530562b49BBF8eb5494a553914767",
       "transactionHash": "0xe2a270fb28526a9b21b418b6370f4153bc6fe6cf3975c77e87b30dcf8c237cbe"
+    },
+    "1620834050452": {
+      "events": {
+        "0x06239653922ac7bea6aa2b19dc486b9361821d37712eb796adfd38d81de278ca": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "provider",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "eth_amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "token_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "AddLiquidity",
+          "type": "event"
+        },
+        "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "spender",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0x7f4091b46c33e918a0f3aa42307641d17bb67029427a5369e54b353984238705": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokens_sold",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "eth_bought",
+              "type": "uint256"
+            }
+          ],
+          "name": "EthPurchase",
+          "type": "event"
+        },
+        "0x88a5966d370b9919b20f3e2c13ff65706f196a4e32cc2c12bf57088f88525874": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "Received",
+          "type": "event"
+        },
+        "0x0fbf06c058b90cb038a618f8c2acbf6145f8b3570fd1fa56abb8f0f3f05b36e8": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "provider",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "eth_amount",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "token_amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "RemoveLiquidity",
+          "type": "event"
+        },
+        "0xcd60aa75dea3072fbc07ae6d7d856b5dc5f4eee88854f5b4abf7b680ef8bc50f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "buyer",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "eth_sold",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokens_bought",
+              "type": "uint256"
+            }
+          ],
+          "name": "TokenPurchase",
+          "type": "event"
+        },
+        "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x34B88546F44E2C67a64b44679327660FBB5010F5",
+      "transactionHash": "0xa11cd09971dd906fc8370cc762c9ec52fe494141e76b101113fc54c16f425c16"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2021-05-07T17:40:55.775Z",
+  "updatedAt": "2021-05-12T15:41:08.460Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

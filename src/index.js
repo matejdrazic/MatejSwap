@@ -6,7 +6,6 @@ import './index.css';
 import FesbToken from './build/FesbToken.json';
 import MatejSwap from './build/MatejSwap.json';
 import MatejSwapLP from './build/MatejSwapLP.json'
-import Identicon from 'identicon.js';
 import DialogBox from './components/AlertDialog'
 import AlertDialog from './components/AlertDialog';
 import PriceAndInfoSideDiv from './components/PriceAndInfoSideDiv';
@@ -20,6 +19,9 @@ import InputField from './components/InputField'
 import InputFieldTwo from './components/InputFieldTwo'
 import Tab from './components/Tab'
 import Curve from './components/Curve.js'
+import Instruction from './components/Instruction.js'
+
+M.AutoInit();
 
 let web3 = new Web3(Web3.givenProvider)
 
@@ -147,7 +149,6 @@ class SwapContainer extends React.Component {
         this.handleSellClick = this.handleSellClick.bind(this);
 
         const tabs = document.querySelector('.tabs');
-        var instance = M.Tabs.init(tabs, {});
     }
 
     handleBuyClick() {
@@ -390,7 +391,9 @@ class Page extends React.Component {
     }
 
     buyFesbTokens = async (ethAmount) => {
-        await this.state.matejswap.methods.buyFesbTokens().send({ from: this.state.detectedAccount, value: ethAmount }).on('transactionHash', (tx) => {
+        await this.state.matejswap.methods.buyFesbTokens().send({ from: this.state.detectedAccount, value: ethAmount })
+        .on('transactionHash', (tx) => {
+            console.log(tx)
             this.setState({
                 alertDialog: false,
                 text: tx,
@@ -511,7 +514,9 @@ class Page extends React.Component {
                             sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
                             eth_change={this.eth_change} fesb_change={this.fesb_change} />
                     </div>
-                    <div class="col s3">Ovdi bi tribale bit upute</div>
+                    <div class="col s3">
+                        <Instruction />
+                    </div>
                 </div>
             );
         }

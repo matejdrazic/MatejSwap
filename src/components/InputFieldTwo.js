@@ -15,7 +15,7 @@ export default function InputFieldTwo(props) {
                 </form>
             </div>
 
-            <div class="col s2"><img src="fesb.jpg" class="fill" alt="Italian Trulli" /> </div>
+            <div class="col s2"><img src="././assets/fesb.jpg" class="fill" alt="Italian Trulli" /> </div>
         </div>
     );
 }
