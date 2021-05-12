@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/MatejSwap/public/static/css/main.4019f448.chunk.css",
-    "main.js": "/MatejSwap/public/static/js/main.d92307a5.chunk.js",
-    "main.js.map": "/MatejSwap/public/static/js/main.d92307a5.chunk.js.map",
+    "main.css": "/MatejSwap/public/static/css/main.476882d5.chunk.css",
+    "main.js": "/MatejSwap/public/static/js/main.3c46d487.chunk.js",
+    "main.js.map": "/MatejSwap/public/static/js/main.3c46d487.chunk.js.map",
     "runtime-main.js": "/MatejSwap/public/static/js/runtime-main.08cafaaf.js",
     "runtime-main.js.map": "/MatejSwap/public/static/js/runtime-main.08cafaaf.js.map",
-    "static/js/2.3c2839f2.chunk.js": "/MatejSwap/public/static/js/2.3c2839f2.chunk.js",
-    "static/js/2.3c2839f2.chunk.js.map": "/MatejSwap/public/static/js/2.3c2839f2.chunk.js.map",
+    "static/js/2.e2aeaa60.chunk.js": "/MatejSwap/public/static/js/2.e2aeaa60.chunk.js",
+    "static/js/2.e2aeaa60.chunk.js.map": "/MatejSwap/public/static/js/2.e2aeaa60.chunk.js.map",
     "index.html": "/MatejSwap/public/index.html",
-    "static/css/main.4019f448.chunk.css.map": "/MatejSwap/public/static/css/main.4019f448.chunk.css.map",
-    "static/js/2.3c2839f2.chunk.js.LICENSE.txt": "/MatejSwap/public/static/js/2.3c2839f2.chunk.js.LICENSE.txt"
+    "static/css/main.476882d5.chunk.css.map": "/MatejSwap/public/static/css/main.476882d5.chunk.css.map",
+    "static/js/2.e2aeaa60.chunk.js.LICENSE.txt": "/MatejSwap/public/static/js/2.e2aeaa60.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.08cafaaf.js",
-    "static/js/2.3c2839f2.chunk.js",
-    "static/css/main.4019f448.chunk.css",
-    "static/js/main.d92307a5.chunk.js"
+    "static/js/2.e2aeaa60.chunk.js",
+    "static/css/main.476882d5.chunk.css",
+    "static/js/main.3c46d487.chunk.js"
   ]
 }
