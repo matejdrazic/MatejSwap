@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import M from 'materialize-css';
 
-M.AutoInit()
+setTimeout(() => M.AutoInit(), 100)
 export default function Instruction(props) {
     return (
         <div class="card divPriceRight z-depth-3">
