@@ -19,9 +19,7 @@ import InputField from './components/InputField'
 import InputFieldTwo from './components/InputFieldTwo'
 import Tab from './components/Tab'
 import Curve from './components/Curve.js'
-import Instruction from './components/Instruction.js'
-
-M.AutoInit();
+import Instruction from './components/Instruction'
 
 let web3 = new Web3(Web3.givenProvider)
 
@@ -149,6 +147,7 @@ class SwapContainer extends React.Component {
         this.handleSellClick = this.handleSellClick.bind(this);
 
         const tabs = document.querySelector('.tabs');
+        var instance = M.Tabs.init(tabs, {});
     }
 
     handleBuyClick() {
@@ -401,6 +400,9 @@ class Page extends React.Component {
                 dialogTitle: "Transaction hash:"
             })
         })
+        .on('confirmation', function(confirmationNumber, receipt){ 
+            console.log(confirmationNumber + receipt)
+         })
         this.loadWalletInfo()
         this.gettingSwapInfo()
     }
