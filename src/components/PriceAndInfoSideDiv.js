@@ -5,7 +5,7 @@ let web3 = new Web3(Web3.givenProvider);
 
 export default function PriceAndInfoSideDiv(props) {
         return (
-            <div class="divPrice z-depth-5">
+            <div class="divPriceLeft z-depth-3">
                 Price: <br />
                 { (props.eth/props.fesb).toFixed(2) } ETH/FESB <br />
                 { (props.fesb/props.eth).toFixed(2) } FESB/ETH <br /><br />

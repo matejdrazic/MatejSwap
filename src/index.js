@@ -18,9 +18,12 @@ import NavBar from './components/Navbar';
 import InputField from './components/InputField'
 import InputFieldTwo from './components/InputFieldTwo'
 import Tab from './components/Tab'
-import Curve from './components/Curve.js'
+import Curve from './components/Curve'
+import Instruction from './components/Instruction';
 
 let web3 = new Web3(Web3.givenProvider)
+
+M.AutoInit()
 
 class Container extends React.Component {
     render() {
@@ -146,7 +149,6 @@ class SwapContainer extends React.Component {
         this.handleSellClick = this.handleSellClick.bind(this);
 
         const tabs = document.querySelector('.tabs');
-        var instance = M.Tabs.init(tabs, {});
     }
 
     handleBuyClick() {
@@ -509,7 +511,9 @@ class Page extends React.Component {
                             sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
                             eth_change={this.eth_change} fesb_change={this.fesb_change} />
                     </div>
-                    <div class="col s3">Ovdi bi tribale bit upute</div>
+                    <div class="col s3">
+                        <Instruction />
+                    </div>
                 </div>
             );
         }

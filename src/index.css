@@ -9,12 +9,24 @@
     padding: 20px;
   }
 
-  .divPrice {
+  .divPriceLeft {
     width: auto;
     height: auto;
     margin: auto;
     margin-top: 75px;
-    margin-left: 45px;
+    margin-left: 40px;
+    border: 1px #F8F8F8;
+    border-radius: 15px;
+    background-color: #FFF;
+    padding: 10px;
+  }
+
+  .divPriceRight {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-top: 75px;
+    margin-right: 40px;
     border: 1px #F8F8F8;
     border-radius: 15px;
     background-color: #FFF;

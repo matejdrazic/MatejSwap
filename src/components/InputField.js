@@ -15,7 +15,7 @@ export default function InputField(props) {
                 </form>
             </div>
 
-            <div class="col s2"><img src="eth.png" class="fill" alt="Italian Trulli" /> </div>
+            <div class="col s2"><img src="././assets/eth.png" class="fill" alt="Italian Trulli" /> </div>
         </div>
     );
 
