@@ -9,7 +9,7 @@ export default function ButtonTwo(props) {
                 event.preventDefault()
                 let amountETH = web3.utils.toWei(props.amountETH, 'ether')
                 let amountFESB = web3.utils.toWei(props.amountFESB, 'ether')
-                window.ethereum ? props.onClick(amountETH, amountFESB) : null
+                props.address ? props.onClick(amountETH, amountFESB) : null
                 }} 
                 class="row center-align marpad">
                 <a class="waves-effect waves-light btn-large col s12">{props.text}</a>

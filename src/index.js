@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Web3 from 'web3';
+import 'materialize-css/dist/css/materialize.min.css';
 import M, { updateTextFields } from 'materialize-css';
 import './index.css';
 import FesbToken from './build/FesbToken.json';
@@ -19,9 +20,9 @@ import InputField from './components/InputField'
 import InputFieldTwo from './components/InputFieldTwo'
 import Tab from './components/Tab'
 import Curve from './components/Curve'
-import Instruction from './components/Instruction';
 
 let web3 = new Web3(Web3.givenProvider)
+const AddressContext = React.createContext(null)
 
 M.AutoInit()
 
@@ -93,21 +94,21 @@ class PoolContainer extends React.Component {
             lp: e.target.value
         })
     }
-
+    static contextType = AddressContext;
     render() {
 
         let provideForm = (<div class="marpad">
             <InputField value={this.state.eth} text={this.state.inputFieldText} balances={this.props.balances} input={this.eth_change} />
             <Icon arrow={this.state.arrow} />
             <InputFieldTwo value={this.state.fesb} text={this.state.inputFieldTeoText} balances={this.props.balances} input={this.fesb_change} />
-            <ButtonTwo text={this.state.text}
+            <ButtonTwo address={this.context} text={this.state.text}
                 onClick={this.props.provideLiq} amountETH={this.state.eth ? this.state.eth.toString() : '0'} amountFESB={this.state.fesb ? this.state.fesb.toString() : '0'}
             />
         </div>)
 
         let removeForm = <div class="marpad">
             <InputFieldLP text={this.state.inputFieldText} balances={this.props.balances} input={this.lp_change} provideOrRemove={true} />
-            <ButtonThree text={this.state.text}
+            <ButtonThree address={this.context} text={this.state.text}
                 onClick={this.props.removeLiq} amountLPTokens={web3.utils.toWei(this.state.lp ? this.state.lp.toString() : '0', 'ether')}
             />
         </div>
@@ -133,11 +134,8 @@ class SwapContainer extends React.Component {
         super(props);
         this.state = ({
             buyOrSell: true,
-
-            //ovo si doda radi onog errora al nisi testira "A component is changing ..."
             eth: '',
             fesb: '',
-
             arrow: 'arrow_downward',
             disabledETH: '',
             disabledFESB: 'disabled',
@@ -172,7 +170,7 @@ class SwapContainer extends React.Component {
             textDisplayFESB: 'This is where you enter your FESB amount: '
         })
     }
-
+    static contextType = AddressContext;
     render() {
 
         return (
@@ -190,7 +188,7 @@ class SwapContainer extends React.Component {
                     <Icon arrow={this.state.arrow} />
                     <InputFieldTwo disabled={this.state.disabledFESB} text={this.state.textDisplayFESB} balances={this.props.balances}
                         input={this.props.fesb_change} value={this.props.fesbChange} buyOrSell={this.state.buyOrSell} />
-                    <ButtonOne text={this.state.buyOrSell ? 'Buy' : 'Sell'}
+                    <ButtonOne address={this.context} text={this.state.buyOrSell ? 'Buy' : 'Sell'}
                         onClick={this.state.buyOrSell ? this.props.buy : this.props.sell} amount={this.state.buyOrSell ? (this.props.ethChange ? this.props.ethChange.toString() : '0') : (this.props.fesbChange ? this.props.fesbChange.toString() : '0')} />
                 </div>
             </div>
@@ -505,14 +503,25 @@ class Page extends React.Component {
                             width={350} height={350} />
                     </div>
                     <div class="col s6">
-                        <Container price={this.state.price} swapping={this.state.swappingOrPool} balances={this.state.balances}
-                            buy={this.buyFesbTokens} eth={this.state.eth} fesb={this.state.fesb}
-                            ethChange={this.state.ethChange} fesbChange={this.state.fesbChange}
-                            sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
-                            eth_change={this.eth_change} fesb_change={this.fesb_change} />
+                        <AddressContext.Provider value={this.state.detectedAccount} >
+                            <Container price={this.state.price} swapping={this.state.swappingOrPool} balances={this.state.balances}
+                                buy={this.buyFesbTokens} eth={this.state.eth} fesb={this.state.fesb}
+                                ethChange={this.state.ethChange} fesbChange={this.state.fesbChange}
+                                sell={this.sellFesbTokens} provideLiq={this.provideLiquidity} removeLiq={this.removeLiquidity}
+                                eth_change={this.eth_change} fesb_change={this.fesb_change} />
+                        </AddressContext.Provider>
                     </div>
                     <div class="col s3">
-                        <Instruction />
+                        <div class="card divPriceRight z-depth-3">
+                            <div class="card-content">
+                                <p>Here are the instructions for properly using MatejSwap.</p>
+                            </div>
+                            <div class="card-content grey lighten-4">
+                                <div id="test4">Make sure you have MetaMask installed. If you don't, clicking on the 'Connect Wallet' button will take you to the MetaMask website.</div>
+                                <div id="test5">When you do, go to <a href="https://faucet.ropsten.be/" target="_blank">this link</a> to get some ropsten ethereum. Paste your address from MetaMask (make sure you're on the Ropsten network) and get some ethereum.</div>
+                                <div id="test6">From here it's really simple. You can buy, sell or provide liquidity to the pool. <br /> <b>#NOTE</b> Providing liquidity will get you LP tokens which make you eligable for claiming liquidity from the Pool contract.</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             );
