@@ -217,7 +217,7 @@ class Page extends React.Component {
             fesbBalanceInPool: '0',
             text: "Please consider installing MetaMask to fully experience MatejSwap!",
             okButton: 'Install',
-            dialogTitle: "MetaMask is not detected!",
+            dialogTitle: "MetaMask error!",
             writing: true
         })
 
