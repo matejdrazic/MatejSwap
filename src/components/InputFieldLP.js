@@ -15,7 +15,7 @@ export default function InputFieldLP(props) {
                 </form>
             </div>
 
-            <div class="col s2"><img src="././assets/lp_tokens.jpg" class="fill" alt="Italian Trulli" /> </div>
+            <div class="col s2"><img src="././assets/mslp.jpg" class="fill" alt="Italian Trulli" /> </div>
         </div>
     );
 }

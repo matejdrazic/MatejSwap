@@ -20,6 +20,8 @@ import InputField from './components/InputField'
 import InputFieldTwo from './components/InputFieldTwo'
 import Tab from './components/Tab'
 import Curve from './components/Curve'
+import Alert from '@material-ui/lab/Alert';
+
 
 let web3 = new Web3(Web3.givenProvider)
 const AddressContext = React.createContext(null)
@@ -503,6 +505,7 @@ class Page extends React.Component {
                             width={350} height={350} />
                     </div>
                     <div class="col s6">
+                            {this.state.network === 'Ropsten' ? <div class="height"></div> : <Alert variant="filled" severity="error">Please switch to the Ropsten test net.</Alert>}
                         <AddressContext.Provider value={this.state.detectedAccount} >
                             <Container price={this.state.price} swapping={this.state.swappingOrPool} balances={this.state.balances}
                                 buy={this.buyFesbTokens} eth={this.state.eth} fesb={this.state.fesb}
